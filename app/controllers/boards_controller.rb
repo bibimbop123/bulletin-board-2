@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
 
     @the_board = matching_boards.at(0)
 
-    @matching_posts = Post.where({ :board_id => @the_board.id })
+    @matching_posts = @the_board.posts
 
     @active_posts = @matching_posts.where({ :expires_on => (Time.current...) }).order(:expires_on)
     
@@ -26,6 +26,7 @@ class BoardsController < ApplicationController
   def create
     the_board = Board.new
     the_board.name = params.fetch("query_name")
+    the_board.user_id = current_user.id
 
     if the_board.valid?
       the_board.save

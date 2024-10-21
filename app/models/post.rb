@@ -2,7 +2,7 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  body       :text
 #  expires_on :date
 #  title      :string
@@ -14,4 +14,6 @@ class Post < ApplicationRecord
   validates(:title, presence: true)
   validates(:body, presence: true)
   validates(:expires_on, presence: true)
+
+  belongs_to :board, class_name: "Board", foreign_key: :board_id
 end

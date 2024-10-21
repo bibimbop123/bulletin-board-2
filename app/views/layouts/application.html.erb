@@ -11,9 +11,16 @@
   </head>
 
   <body>
-    <nav>
-      <a href="/">Bulletin Board</a>
-    </nav>
+  <nav>
+  <a href="/">Bulletin Board</a>
+
+  <% if user_signed_in? %>
+    <a href="/users/sign_out" data-method="delete">Sign out</a>
+  <% else %>
+    <a href="/users/sign_up">Sign up</a>
+    <a href="/users/sign_in">Sign in</a>
+  <% end %>
+</nav>
 
     <hr>
 
